@@ -57,9 +57,9 @@
 <!--                                Descomentar para pruebas en AWS-->
 					<url>http://18.116.200.191:8080/manager/text</url>
 					<server>TomcatServer</server>
-<!--                                Descomentar para pruebas en AWS-->
+<!--                                Descomentar para pruebas en AWS
 					<username>${env.USER_NAME}</username>
-					<password>${env.ACCESS_TOKEN}</password>
+					<password>${env.ACCESS_TOKEN}</password>-->
 					<path>/epsBackend</path>
 				</configuration>
 			</plugin>
@@ -70,8 +70,10 @@
 				<configuration>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
 					<url>jdbc:mysql://18.220.202.154:3306/PROCESOS_INGENIERIA?useSsl=true</url>
-					<user>${env.USER_DB}</user>
-					<password>${env.PASS_DB}</password>
+					<!--<user>${env.USER_DB}</user>
+					<password>${env.PASS_DB}</password>-->
+					<user>angelrg</user>
+					<password>angelEPS1</password>
 					<baselineOnMigrate>true</baselineOnMigrate>
 					<schemas>PROCESOS_INGENIERIA</schemas>
 					<locations>
@@ -82,6 +84,7 @@
 					<execution>
 						<phase>generate-sources</phase>
 						<goals>
+							<goal>repair</goal>
 							<goal>migrate</goal>
 							<goal>info</goal>
 						</goals>
