@@ -70,8 +70,8 @@
 				<configuration>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
 					<url>jdbc:mysql://18.220.202.154:3306/PROCESOS_INGENIERIA?useSsl=true</url>
-					<user>angelrg</user>
-					<password>angelEPS1</password>
+					<user>${env.USER_DB}</user>
+					<password>${env.PASS_DB}</password>
 					<baselineOnMigrate>true</baselineOnMigrate>
 					<schemas>PROCESOS_INGENIERIA</schemas>
 					<locations>
