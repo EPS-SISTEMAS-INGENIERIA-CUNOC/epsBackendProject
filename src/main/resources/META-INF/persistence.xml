@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="epsPersistence" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.DocumentoCuartaOportunidad</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.DocumentoCierre</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.ActaComplemento</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.CuartaOportunidad</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.DictamenCierre</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.Desasignacion</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.EtapaSolicitud</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.Notificacion</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.VariablesGlobales</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.DocumentoActa</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.Extraordinario</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.DocumentoEquivalencia</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.DictamenEquivalencia</class>
+    <class>gt.edu.cunoc.epsBackend.persitence.entity.TipoSolicitud</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>ALL</shared-cache-mode>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://18.220.202.154:3306/PROCESOS_INGENIERIA?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="angelrg"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="angelEPS1"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>
