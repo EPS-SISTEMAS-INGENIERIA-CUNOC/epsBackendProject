@@ -69,11 +69,11 @@
 				<version>7.12.0</version>
 				<configuration>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
-					<url>jdbc:mysql://18.220.202.154:3306/PROCESOS_INGENIERIA?useSsl=true</url>
+					<url>jdbc:mysql://18.220.202.154:3306/procesos_ingenieria?useSsl=true</url>
 					<user>${env.USER_DB}</user>
 					<password>${env.PASS_DB}</password>
 					<baselineOnMigrate>true</baselineOnMigrate>
-					<schemas>PROCESOS_INGENIERIA</schemas>
+					<schemas>procesos_ingenieria</schemas>
 					<locations>
 						<location>filesystem:src/main/resources/database</location>
 					</locations>
