@@ -1,6 +1,5 @@
 -- CREATE DB
-DROP DATABASE PROCESOS_INGENIERIA;
-CREATE DATABASE procesos_ingenieria;
+CREATE DATABASE IF NOT EXISTS procesos_ingenieria;
 -- CREATE DATABASE IF NOT EXISTS PROCESOS_INGENIERIA;
 USE procesos_ingenieria;
 
@@ -10,7 +9,7 @@ USE procesos_ingenieria;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tipo_solicitud` (
+CREATE TABLE IF NOT EXISTS `tipo_solicitud` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
@@ -33,7 +32,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `etapa_solicitud` (
+CREATE TABLE IF NOT EXISTS `etapa_solicitud` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `tipo_solicitud_fk` int NOT NULL,
@@ -60,7 +59,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `acta_complemento` (
+CREATE TABLE IF NOT EXISTS `acta_complemento` (
   `id` int NOT NULL AUTO_INCREMENT,
   `estudiante_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `docente_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -88,7 +87,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cuarta_oportunidad` (
+CREATE TABLE IF NOT EXISTS `cuarta_oportunidad` (
   `id` int NOT NULL AUTO_INCREMENT,
   `estudiante_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `curso_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -116,7 +115,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `desasignacion` (
+CREATE TABLE IF NOT EXISTS `desasignacion` (
   `id` int NOT NULL AUTO_INCREMENT,
   `fecha_inicio` date NOT NULL,
   `estado` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -145,7 +144,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `dictamen_cierre` (
+CREATE TABLE IF NOT EXISTS `dictamen_cierre` (
   `id` int NOT NULL AUTO_INCREMENT,
   `estudiante_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `coordinador_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -173,7 +172,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `dictamen_equivalencia` (
+CREATE TABLE IF NOT EXISTS `dictamen_equivalencia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `estudiante_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `docente_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -202,7 +201,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `documento_acta` (
+CREATE TABLE IF NOT EXISTS `documento_acta` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `id_acta_fk` int NOT NULL,
@@ -228,7 +227,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `documento_cierre` (
+CREATE TABLE IF NOT EXISTS `documento_cierre` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `link_doc` varchar(100) NOT NULL,
@@ -254,7 +253,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `documento_cuarta_oportunidad` (
+CREATE TABLE IF NOT EXISTS `documento_cuarta_oportunidad` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `link` varchar(100) NOT NULL,
@@ -280,7 +279,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `documento_equivalencia` (
+CREATE TABLE IF NOT EXISTS `documento_equivalencia` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `id_equivalencia_fk` int NOT NULL,
@@ -306,7 +305,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `extraordinario` (
+CREATE TABLE IF NOT EXISTS `extraordinario` (
   `id` int NOT NULL AUTO_INCREMENT,
   `fecha_inicio` date NOT NULL,
   `estado` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -337,7 +336,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `notificacion` (
+CREATE TABLE IF NOT EXISTS `notificacion` (
   `id` int NOT NULL AUTO_INCREMENT,
   `usuario` int NOT NULL,
   `fecha` date NOT NULL,
@@ -365,7 +364,7 @@ UNLOCK TABLES;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `variable_global` (
+CREATE TABLE IF NOT EXISTS `variable_global` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `valor_num` double DEFAULT NULL,
