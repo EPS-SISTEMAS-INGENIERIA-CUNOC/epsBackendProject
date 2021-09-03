@@ -1,6 +1,5 @@
 -- CREATE DB
 CREATE DATABASE IF NOT EXISTS procesos_ingenieria;
--- CREATE DATABASE IF NOT EXISTS PROCESOS_INGENIERIA;
 USE procesos_ingenieria;
 
 --
