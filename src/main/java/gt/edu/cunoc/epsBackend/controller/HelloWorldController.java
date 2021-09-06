@@ -16,19 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldController {
     
-    @RequestMapping("/")
-    public String hello() {
-        return "Hola Mundo Todos!!";
-    }
-    
     @RequestMapping("/user")
     @RolesAllowed("backend-user")
     public String helloUser() {
         return "Hola Mundo User!!";
     }
     
-    @RequestMapping("/admin")
-    @RolesAllowed("backend-admin")
+    @RequestMapping("/user/{id}")
     public String helloAdmin() {
         return "Hola Mundo Admin!!";
     }

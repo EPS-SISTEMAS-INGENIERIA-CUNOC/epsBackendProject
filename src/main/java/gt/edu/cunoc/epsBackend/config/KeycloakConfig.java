@@ -21,28 +21,33 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
  */
 
 @KeycloakConfiguration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class KeycloakConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        KeycloakAuthenticationProvider provider = new KeycloakAuthenticationProvider();
-        provider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
-        auth.authenticationProvider(provider);
+    	KeycloakAuthenticationProvider keycloakAuthenticationProvider = keycloakAuthenticationProvider();
+		keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
+		auth.authenticationProvider(keycloakAuthenticationProvider);
     }
 
+    /**
+     * Defines the session authentication strategy.
+     */
     @Bean
     @Override
-    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+    protected NullAuthenticatedSessionStrategy sessionAuthenticationStrategy() {
         return new NullAuthenticatedSessionStrategy();
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception
+    {
         super.configure(http);
-        http.authorizeRequests().anyRequest().permitAll();
-        http.csrf().disable();
+        http
+                .authorizeRequests()
+                .antMatchers("/user*").hasRole("realm-user")
+                .antMatchers("/user/*").hasRole("realm-admin")
+                .anyRequest().authenticated();
     }
 
 }
