@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -26,14 +26,9 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "ACTA_COMPLEMENTO")
+@Table(name = "acta_complemento")
 @NamedQueries({
-    @NamedQuery(name = "ActaComplemento.findAll", query = "SELECT a FROM ActaComplemento a"),
-    @NamedQuery(name = "ActaComplemento.findById", query = "SELECT a FROM ActaComplemento a WHERE a.id = :id"),
-    @NamedQuery(name = "ActaComplemento.findByIdEstudiante", query = "SELECT a FROM ActaComplemento a WHERE a.idEstudiante = :idEstudiante"),
-    @NamedQuery(name = "ActaComplemento.findByIdDocente", query = "SELECT a FROM ActaComplemento a WHERE a.idDocente = :idDocente"),
-    @NamedQuery(name = "ActaComplemento.findByIdSecretaroa", query = "SELECT a FROM ActaComplemento a WHERE a.idSecretaroa = :idSecretaroa"),
-    @NamedQuery(name = "ActaComplemento.findByIdCoordinador", query = "SELECT a FROM ActaComplemento a WHERE a.idCoordinador = :idCoordinador")})
+    @NamedQuery(name = "ActaComplemento.findAll", query = "SELECT a FROM ActaComplemento a")})
 public class ActaComplemento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,20 +38,20 @@ public class ActaComplemento implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "id_estudiante")
-    private String idEstudiante;
-    @Column(name = "id_docente")
-    private String idDocente;
+    @Column(name = "estudiante_id")
+    private String estudianteId;
+    @Column(name = "docente_id")
+    private String docenteId;
     @Basic(optional = false)
-    @Column(name = "id_secretaroa")
-    private String idSecretaroa;
-    @Column(name = "id_coordinador")
-    private String idCoordinador;
+    @Column(name = "secretaria_id")
+    private String secretariaId;
+    @Column(name = "coordinador_id")
+    private String coordinadorId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActaFk")
+    private Collection<DocumentoActa> documentoActaCollection;
     @JoinColumn(name = "etapa_solicitud_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private EtapaSolicitud etapaSolicitudFk;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idActaFk")
-    private Collection<DocumentoActa> documentoActaCollection;
 
     public ActaComplemento() {
     }
@@ -65,10 +60,10 @@ public class ActaComplemento implements Serializable {
         this.id = id;
     }
 
-    public ActaComplemento(Integer id, String idEstudiante, String idSecretaroa) {
+    public ActaComplemento(Integer id, String estudianteId, String secretariaId) {
         this.id = id;
-        this.idEstudiante = idEstudiante;
-        this.idSecretaroa = idSecretaroa;
+        this.estudianteId = estudianteId;
+        this.secretariaId = secretariaId;
     }
 
     public Integer getId() {
@@ -79,44 +74,36 @@ public class ActaComplemento implements Serializable {
         this.id = id;
     }
 
-    public String getIdEstudiante() {
-        return idEstudiante;
+    public String getEstudianteId() {
+        return estudianteId;
     }
 
-    public void setIdEstudiante(String idEstudiante) {
-        this.idEstudiante = idEstudiante;
+    public void setEstudianteId(String estudianteId) {
+        this.estudianteId = estudianteId;
     }
 
-    public String getIdDocente() {
-        return idDocente;
+    public String getDocenteId() {
+        return docenteId;
     }
 
-    public void setIdDocente(String idDocente) {
-        this.idDocente = idDocente;
+    public void setDocenteId(String docenteId) {
+        this.docenteId = docenteId;
     }
 
-    public String getIdSecretaroa() {
-        return idSecretaroa;
+    public String getSecretariaId() {
+        return secretariaId;
     }
 
-    public void setIdSecretaroa(String idSecretaroa) {
-        this.idSecretaroa = idSecretaroa;
+    public void setSecretariaId(String secretariaId) {
+        this.secretariaId = secretariaId;
     }
 
-    public String getIdCoordinador() {
-        return idCoordinador;
+    public String getCoordinadorId() {
+        return coordinadorId;
     }
 
-    public void setIdCoordinador(String idCoordinador) {
-        this.idCoordinador = idCoordinador;
-    }
-
-    public EtapaSolicitud getEtapaSolicitudFk() {
-        return etapaSolicitudFk;
-    }
-
-    public void setEtapaSolicitudFk(EtapaSolicitud etapaSolicitudFk) {
-        this.etapaSolicitudFk = etapaSolicitudFk;
+    public void setCoordinadorId(String coordinadorId) {
+        this.coordinadorId = coordinadorId;
     }
 
     public Collection<DocumentoActa> getDocumentoActaCollection() {
@@ -125,6 +112,14 @@ public class ActaComplemento implements Serializable {
 
     public void setDocumentoActaCollection(Collection<DocumentoActa> documentoActaCollection) {
         this.documentoActaCollection = documentoActaCollection;
+    }
+
+    public EtapaSolicitud getEtapaSolicitudFk() {
+        return etapaSolicitudFk;
+    }
+
+    public void setEtapaSolicitudFk(EtapaSolicitud etapaSolicitudFk) {
+        this.etapaSolicitudFk = etapaSolicitudFk;
     }
 
     @Override
@@ -149,7 +144,7 @@ public class ActaComplemento implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.ActaComplemento[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.ActaComplemento[ id=" + id + " ]";
     }
     
 }

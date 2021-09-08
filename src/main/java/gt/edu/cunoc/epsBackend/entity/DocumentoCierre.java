@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,12 +23,10 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "TIPO_SOLICITUD")
+@Table(name = "documento_cierre")
 @NamedQueries({
-    @NamedQuery(name = "TipoSolicitud.findAll", query = "SELECT t FROM TipoSolicitud t"),
-    @NamedQuery(name = "TipoSolicitud.findById", query = "SELECT t FROM TipoSolicitud t WHERE t.id = :id"),
-    @NamedQuery(name = "TipoSolicitud.findByNombre", query = "SELECT t FROM TipoSolicitud t WHERE t.nombre = :nombre")})
-public class TipoSolicitud implements Serializable {
+    @NamedQuery(name = "DocumentoCierre.findAll", query = "SELECT d FROM DocumentoCierre d")})
+public class DocumentoCierre implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,19 +37,24 @@ public class TipoSolicitud implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoSolicitudFk")
-    private Collection<EtapaSolicitud> etapaSolicitudCollection;
+    @Basic(optional = false)
+    @Column(name = "link_doc")
+    private String linkDoc;
+    @JoinColumn(name = "id_cierre_fk", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private DictamenCierre idCierreFk;
 
-    public TipoSolicitud() {
+    public DocumentoCierre() {
     }
 
-    public TipoSolicitud(Integer id) {
+    public DocumentoCierre(Integer id) {
         this.id = id;
     }
 
-    public TipoSolicitud(Integer id, String nombre) {
+    public DocumentoCierre(Integer id, String nombre, String linkDoc) {
         this.id = id;
         this.nombre = nombre;
+        this.linkDoc = linkDoc;
     }
 
     public Integer getId() {
@@ -71,12 +73,20 @@ public class TipoSolicitud implements Serializable {
         this.nombre = nombre;
     }
 
-    public Collection<EtapaSolicitud> getEtapaSolicitudCollection() {
-        return etapaSolicitudCollection;
+    public String getLinkDoc() {
+        return linkDoc;
     }
 
-    public void setEtapaSolicitudCollection(Collection<EtapaSolicitud> etapaSolicitudCollection) {
-        this.etapaSolicitudCollection = etapaSolicitudCollection;
+    public void setLinkDoc(String linkDoc) {
+        this.linkDoc = linkDoc;
+    }
+
+    public DictamenCierre getIdCierreFk() {
+        return idCierreFk;
+    }
+
+    public void setIdCierreFk(DictamenCierre idCierreFk) {
+        this.idCierreFk = idCierreFk;
     }
 
     @Override
@@ -89,10 +99,10 @@ public class TipoSolicitud implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoSolicitud)) {
+        if (!(object instanceof DocumentoCierre)) {
             return false;
         }
-        TipoSolicitud other = (TipoSolicitud) object;
+        DocumentoCierre other = (DocumentoCierre) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -101,7 +111,7 @@ public class TipoSolicitud implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.TipoSolicitud[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.DocumentoCierre[ id=" + id + " ]";
     }
     
 }

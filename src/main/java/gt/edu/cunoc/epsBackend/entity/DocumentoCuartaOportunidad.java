@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -23,13 +23,10 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "DOCUMENTO_CIERRE")
+@Table(name = "documento_cuarta_oportunidad")
 @NamedQueries({
-    @NamedQuery(name = "DocumentoCierre.findAll", query = "SELECT d FROM DocumentoCierre d"),
-    @NamedQuery(name = "DocumentoCierre.findById", query = "SELECT d FROM DocumentoCierre d WHERE d.id = :id"),
-    @NamedQuery(name = "DocumentoCierre.findByNombre", query = "SELECT d FROM DocumentoCierre d WHERE d.nombre = :nombre"),
-    @NamedQuery(name = "DocumentoCierre.findByLinkDoc", query = "SELECT d FROM DocumentoCierre d WHERE d.linkDoc = :linkDoc")})
-public class DocumentoCierre implements Serializable {
+    @NamedQuery(name = "DocumentoCuartaOportunidad.findAll", query = "SELECT d FROM DocumentoCuartaOportunidad d")})
+public class DocumentoCuartaOportunidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,23 +38,23 @@ public class DocumentoCierre implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "link_doc")
-    private String linkDoc;
-    @JoinColumn(name = "id_cierre_fk", referencedColumnName = "id")
+    @Column(name = "link")
+    private String link;
+    @JoinColumn(name = "id_cuarta_oportunidad_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private DictamenCierre idCierreFk;
+    private CuartaOportunidad idCuartaOportunidadFk;
 
-    public DocumentoCierre() {
+    public DocumentoCuartaOportunidad() {
     }
 
-    public DocumentoCierre(Integer id) {
+    public DocumentoCuartaOportunidad(Integer id) {
         this.id = id;
     }
 
-    public DocumentoCierre(Integer id, String nombre, String linkDoc) {
+    public DocumentoCuartaOportunidad(Integer id, String nombre, String link) {
         this.id = id;
         this.nombre = nombre;
-        this.linkDoc = linkDoc;
+        this.link = link;
     }
 
     public Integer getId() {
@@ -76,20 +73,20 @@ public class DocumentoCierre implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getLinkDoc() {
-        return linkDoc;
+    public String getLink() {
+        return link;
     }
 
-    public void setLinkDoc(String linkDoc) {
-        this.linkDoc = linkDoc;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public DictamenCierre getIdCierreFk() {
-        return idCierreFk;
+    public CuartaOportunidad getIdCuartaOportunidadFk() {
+        return idCuartaOportunidadFk;
     }
 
-    public void setIdCierreFk(DictamenCierre idCierreFk) {
-        this.idCierreFk = idCierreFk;
+    public void setIdCuartaOportunidadFk(CuartaOportunidad idCuartaOportunidadFk) {
+        this.idCuartaOportunidadFk = idCuartaOportunidadFk;
     }
 
     @Override
@@ -102,10 +99,10 @@ public class DocumentoCierre implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DocumentoCierre)) {
+        if (!(object instanceof DocumentoCuartaOportunidad)) {
             return false;
         }
-        DocumentoCierre other = (DocumentoCierre) object;
+        DocumentoCuartaOportunidad other = (DocumentoCuartaOportunidad) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +111,7 @@ public class DocumentoCierre implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.DocumentoCierre[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.DocumentoCuartaOportunidad[ id=" + id + " ]";
     }
     
 }

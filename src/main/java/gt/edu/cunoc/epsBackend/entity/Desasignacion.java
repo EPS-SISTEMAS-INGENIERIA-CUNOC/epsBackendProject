@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -26,17 +26,9 @@ import javax.persistence.TemporalType;
  * @author teodoro
  */
 @Entity
-@Table(name = "DESASIGNACION")
+@Table(name = "desasignacion")
 @NamedQueries({
-    @NamedQuery(name = "Desasignacion.findAll", query = "SELECT d FROM Desasignacion d"),
-    @NamedQuery(name = "Desasignacion.findById", query = "SELECT d FROM Desasignacion d WHERE d.id = :id"),
-    @NamedQuery(name = "Desasignacion.findByFechaInicio", query = "SELECT d FROM Desasignacion d WHERE d.fechaInicio = :fechaInicio"),
-    @NamedQuery(name = "Desasignacion.findByEstado", query = "SELECT d FROM Desasignacion d WHERE d.estado = :estado"),
-    @NamedQuery(name = "Desasignacion.findByIdEstudiante", query = "SELECT d FROM Desasignacion d WHERE d.idEstudiante = :idEstudiante"),
-    @NamedQuery(name = "Desasignacion.findByCursoId", query = "SELECT d FROM Desasignacion d WHERE d.cursoId = :cursoId"),
-    @NamedQuery(name = "Desasignacion.findByDocenteId", query = "SELECT d FROM Desasignacion d WHERE d.docenteId = :docenteId"),
-    @NamedQuery(name = "Desasignacion.findBySecretariaId", query = "SELECT d FROM Desasignacion d WHERE d.secretariaId = :secretariaId"),
-    @NamedQuery(name = "Desasignacion.findByCoordinadorId", query = "SELECT d FROM Desasignacion d WHERE d.coordinadorId = :coordinadorId")})
+    @NamedQuery(name = "Desasignacion.findAll", query = "SELECT d FROM Desasignacion d")})
 public class Desasignacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,8 +45,8 @@ public class Desasignacion implements Serializable {
     @Column(name = "estado")
     private String estado;
     @Basic(optional = false)
-    @Column(name = "id_estudiante")
-    private String idEstudiante;
+    @Column(name = "estudiante_id")
+    private String estudianteId;
     @Column(name = "curso_id")
     private String cursoId;
     @Basic(optional = false)
@@ -77,11 +69,11 @@ public class Desasignacion implements Serializable {
         this.id = id;
     }
 
-    public Desasignacion(Integer id, Date fechaInicio, String estado, String idEstudiante, String docenteId, String secretariaId, String coordinadorId) {
+    public Desasignacion(Integer id, Date fechaInicio, String estado, String estudianteId, String docenteId, String secretariaId, String coordinadorId) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.estado = estado;
-        this.idEstudiante = idEstudiante;
+        this.estudianteId = estudianteId;
         this.docenteId = docenteId;
         this.secretariaId = secretariaId;
         this.coordinadorId = coordinadorId;
@@ -111,12 +103,12 @@ public class Desasignacion implements Serializable {
         this.estado = estado;
     }
 
-    public String getIdEstudiante() {
-        return idEstudiante;
+    public String getEstudianteId() {
+        return estudianteId;
     }
 
-    public void setIdEstudiante(String idEstudiante) {
-        this.idEstudiante = idEstudiante;
+    public void setEstudianteId(String estudianteId) {
+        this.estudianteId = estudianteId;
     }
 
     public String getCursoId() {
@@ -181,7 +173,7 @@ public class Desasignacion implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.Desasignacion[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.Desasignacion[ id=" + id + " ]";
     }
     
 }

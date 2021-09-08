@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,13 +21,10 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "DOCUMENTO_ACTA")
+@Table(name = "variable_global")
 @NamedQueries({
-    @NamedQuery(name = "DocumentoActa.findAll", query = "SELECT d FROM DocumentoActa d"),
-    @NamedQuery(name = "DocumentoActa.findById", query = "SELECT d FROM DocumentoActa d WHERE d.id = :id"),
-    @NamedQuery(name = "DocumentoActa.findByNombre", query = "SELECT d FROM DocumentoActa d WHERE d.nombre = :nombre"),
-    @NamedQuery(name = "DocumentoActa.findByLink", query = "SELECT d FROM DocumentoActa d WHERE d.link = :link")})
-public class DocumentoActa implements Serializable {
+    @NamedQuery(name = "VariableGlobal.findAll", query = "SELECT v FROM VariableGlobal v")})
+public class VariableGlobal implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,24 +35,22 @@ public class DocumentoActa implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
-    @Column(name = "link")
-    private String link;
-    @JoinColumn(name = "id_acta_fk", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private ActaComplemento idActaFk;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valor_num")
+    private Double valorNum;
+    @Column(name = "valor_txt")
+    private String valorTxt;
 
-    public DocumentoActa() {
+    public VariableGlobal() {
     }
 
-    public DocumentoActa(Integer id) {
+    public VariableGlobal(Integer id) {
         this.id = id;
     }
 
-    public DocumentoActa(Integer id, String nombre, String link) {
+    public VariableGlobal(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.link = link;
     }
 
     public Integer getId() {
@@ -76,20 +69,20 @@ public class DocumentoActa implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getLink() {
-        return link;
+    public Double getValorNum() {
+        return valorNum;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setValorNum(Double valorNum) {
+        this.valorNum = valorNum;
     }
 
-    public ActaComplemento getIdActaFk() {
-        return idActaFk;
+    public String getValorTxt() {
+        return valorTxt;
     }
 
-    public void setIdActaFk(ActaComplemento idActaFk) {
-        this.idActaFk = idActaFk;
+    public void setValorTxt(String valorTxt) {
+        this.valorTxt = valorTxt;
     }
 
     @Override
@@ -102,10 +95,10 @@ public class DocumentoActa implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DocumentoActa)) {
+        if (!(object instanceof VariableGlobal)) {
             return false;
         }
-        DocumentoActa other = (DocumentoActa) object;
+        VariableGlobal other = (VariableGlobal) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +107,7 @@ public class DocumentoActa implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.DocumentoActa[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.VariableGlobal[ id=" + id + " ]";
     }
     
 }

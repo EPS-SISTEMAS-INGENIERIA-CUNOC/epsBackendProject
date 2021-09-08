@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -23,13 +23,10 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "DOCUMENTO_EQUIVALENCIA")
+@Table(name = "documento_acta")
 @NamedQueries({
-    @NamedQuery(name = "DocumentoEquivalencia.findAll", query = "SELECT d FROM DocumentoEquivalencia d"),
-    @NamedQuery(name = "DocumentoEquivalencia.findById", query = "SELECT d FROM DocumentoEquivalencia d WHERE d.id = :id"),
-    @NamedQuery(name = "DocumentoEquivalencia.findByNombre", query = "SELECT d FROM DocumentoEquivalencia d WHERE d.nombre = :nombre"),
-    @NamedQuery(name = "DocumentoEquivalencia.findByLinkDocumento", query = "SELECT d FROM DocumentoEquivalencia d WHERE d.linkDocumento = :linkDocumento")})
-public class DocumentoEquivalencia implements Serializable {
+    @NamedQuery(name = "DocumentoActa.findAll", query = "SELECT d FROM DocumentoActa d")})
+public class DocumentoActa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,23 +38,23 @@ public class DocumentoEquivalencia implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "link_documento")
-    private String linkDocumento;
-    @JoinColumn(name = "id_equivalencia_fk", referencedColumnName = "id")
+    @Column(name = "link")
+    private String link;
+    @JoinColumn(name = "id_acta_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private DictamenEquivalencia idEquivalenciaFk;
+    private ActaComplemento idActaFk;
 
-    public DocumentoEquivalencia() {
+    public DocumentoActa() {
     }
 
-    public DocumentoEquivalencia(Integer id) {
+    public DocumentoActa(Integer id) {
         this.id = id;
     }
 
-    public DocumentoEquivalencia(Integer id, String nombre, String linkDocumento) {
+    public DocumentoActa(Integer id, String nombre, String link) {
         this.id = id;
         this.nombre = nombre;
-        this.linkDocumento = linkDocumento;
+        this.link = link;
     }
 
     public Integer getId() {
@@ -76,20 +73,20 @@ public class DocumentoEquivalencia implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getLinkDocumento() {
-        return linkDocumento;
+    public String getLink() {
+        return link;
     }
 
-    public void setLinkDocumento(String linkDocumento) {
-        this.linkDocumento = linkDocumento;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public DictamenEquivalencia getIdEquivalenciaFk() {
-        return idEquivalenciaFk;
+    public ActaComplemento getIdActaFk() {
+        return idActaFk;
     }
 
-    public void setIdEquivalenciaFk(DictamenEquivalencia idEquivalenciaFk) {
-        this.idEquivalenciaFk = idEquivalenciaFk;
+    public void setIdActaFk(ActaComplemento idActaFk) {
+        this.idActaFk = idActaFk;
     }
 
     @Override
@@ -102,10 +99,10 @@ public class DocumentoEquivalencia implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DocumentoEquivalencia)) {
+        if (!(object instanceof DocumentoActa)) {
             return false;
         }
-        DocumentoEquivalencia other = (DocumentoEquivalencia) object;
+        DocumentoActa other = (DocumentoActa) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +111,7 @@ public class DocumentoEquivalencia implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.DocumentoEquivalencia[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.DocumentoActa[ id=" + id + " ]";
     }
     
 }

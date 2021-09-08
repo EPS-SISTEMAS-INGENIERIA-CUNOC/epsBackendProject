@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -24,15 +24,9 @@ import javax.persistence.TemporalType;
  * @author teodoro
  */
 @Entity
-@Table(name = "NOTIFICACION")
+@Table(name = "notificacion")
 @NamedQueries({
-    @NamedQuery(name = "Notificacion.findAll", query = "SELECT n FROM Notificacion n"),
-    @NamedQuery(name = "Notificacion.findById", query = "SELECT n FROM Notificacion n WHERE n.id = :id"),
-    @NamedQuery(name = "Notificacion.findByUsuario", query = "SELECT n FROM Notificacion n WHERE n.usuario = :usuario"),
-    @NamedQuery(name = "Notificacion.findByFecha", query = "SELECT n FROM Notificacion n WHERE n.fecha = :fecha"),
-    @NamedQuery(name = "Notificacion.findByLeido", query = "SELECT n FROM Notificacion n WHERE n.leido = :leido"),
-    @NamedQuery(name = "Notificacion.findByInformacion", query = "SELECT n FROM Notificacion n WHERE n.informacion = :informacion"),
-    @NamedQuery(name = "Notificacion.findByEnlace", query = "SELECT n FROM Notificacion n WHERE n.enlace = :enlace")})
+    @NamedQuery(name = "Notificacion.findAll", query = "SELECT n FROM Notificacion n")})
 public class Notificacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -142,7 +136,7 @@ public class Notificacion implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.Notificacion[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.Notificacion[ id=" + id + " ]";
     }
     
 }

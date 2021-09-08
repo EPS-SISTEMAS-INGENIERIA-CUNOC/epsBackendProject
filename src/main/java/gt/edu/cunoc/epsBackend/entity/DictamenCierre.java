@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -26,14 +26,9 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "DICTAMEN_CIERRE")
+@Table(name = "dictamen_cierre")
 @NamedQueries({
-    @NamedQuery(name = "DictamenCierre.findAll", query = "SELECT d FROM DictamenCierre d"),
-    @NamedQuery(name = "DictamenCierre.findById", query = "SELECT d FROM DictamenCierre d WHERE d.id = :id"),
-    @NamedQuery(name = "DictamenCierre.findByIdEstudiante", query = "SELECT d FROM DictamenCierre d WHERE d.idEstudiante = :idEstudiante"),
-    @NamedQuery(name = "DictamenCierre.findByIdCoordinador", query = "SELECT d FROM DictamenCierre d WHERE d.idCoordinador = :idCoordinador"),
-    @NamedQuery(name = "DictamenCierre.findByIdSecretaria", query = "SELECT d FROM DictamenCierre d WHERE d.idSecretaria = :idSecretaria"),
-    @NamedQuery(name = "DictamenCierre.findByNota", query = "SELECT d FROM DictamenCierre d WHERE d.nota = :nota")})
+    @NamedQuery(name = "DictamenCierre.findAll", query = "SELECT d FROM DictamenCierre d")})
 public class DictamenCierre implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,14 +38,14 @@ public class DictamenCierre implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "id_estudiante")
-    private String idEstudiante;
+    @Column(name = "estudiante_id")
+    private String estudianteId;
     @Basic(optional = false)
-    @Column(name = "id_coordinador")
-    private String idCoordinador;
+    @Column(name = "coordinador_id")
+    private String coordinadorId;
     @Basic(optional = false)
-    @Column(name = "id_secretaria")
-    private String idSecretaria;
+    @Column(name = "secretaria_id")
+    private String secretariaId;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "nota")
     private Double nota;
@@ -67,11 +62,11 @@ public class DictamenCierre implements Serializable {
         this.id = id;
     }
 
-    public DictamenCierre(Integer id, String idEstudiante, String idCoordinador, String idSecretaria) {
+    public DictamenCierre(Integer id, String estudianteId, String coordinadorId, String secretariaId) {
         this.id = id;
-        this.idEstudiante = idEstudiante;
-        this.idCoordinador = idCoordinador;
-        this.idSecretaria = idSecretaria;
+        this.estudianteId = estudianteId;
+        this.coordinadorId = coordinadorId;
+        this.secretariaId = secretariaId;
     }
 
     public Integer getId() {
@@ -82,28 +77,28 @@ public class DictamenCierre implements Serializable {
         this.id = id;
     }
 
-    public String getIdEstudiante() {
-        return idEstudiante;
+    public String getEstudianteId() {
+        return estudianteId;
     }
 
-    public void setIdEstudiante(String idEstudiante) {
-        this.idEstudiante = idEstudiante;
+    public void setEstudianteId(String estudianteId) {
+        this.estudianteId = estudianteId;
     }
 
-    public String getIdCoordinador() {
-        return idCoordinador;
+    public String getCoordinadorId() {
+        return coordinadorId;
     }
 
-    public void setIdCoordinador(String idCoordinador) {
-        this.idCoordinador = idCoordinador;
+    public void setCoordinadorId(String coordinadorId) {
+        this.coordinadorId = coordinadorId;
     }
 
-    public String getIdSecretaria() {
-        return idSecretaria;
+    public String getSecretariaId() {
+        return secretariaId;
     }
 
-    public void setIdSecretaria(String idSecretaria) {
-        this.idSecretaria = idSecretaria;
+    public void setSecretariaId(String secretariaId) {
+        this.secretariaId = secretariaId;
     }
 
     public Double getNota() {
@@ -152,7 +147,7 @@ public class DictamenCierre implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.DictamenCierre[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.DictamenCierre[ id=" + id + " ]";
     }
     
 }

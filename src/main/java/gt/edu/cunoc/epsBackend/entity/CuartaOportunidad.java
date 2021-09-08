@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -26,14 +26,9 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "CUARTA_OPORTUNIDAD")
+@Table(name = "cuarta_oportunidad")
 @NamedQueries({
-    @NamedQuery(name = "CuartaOportunidad.findAll", query = "SELECT c FROM CuartaOportunidad c"),
-    @NamedQuery(name = "CuartaOportunidad.findById", query = "SELECT c FROM CuartaOportunidad c WHERE c.id = :id"),
-    @NamedQuery(name = "CuartaOportunidad.findByIdEstudiante", query = "SELECT c FROM CuartaOportunidad c WHERE c.idEstudiante = :idEstudiante"),
-    @NamedQuery(name = "CuartaOportunidad.findByIdCurso", query = "SELECT c FROM CuartaOportunidad c WHERE c.idCurso = :idCurso"),
-    @NamedQuery(name = "CuartaOportunidad.findByIdSecretaria", query = "SELECT c FROM CuartaOportunidad c WHERE c.idSecretaria = :idSecretaria"),
-    @NamedQuery(name = "CuartaOportunidad.findByIdCoordinador", query = "SELECT c FROM CuartaOportunidad c WHERE c.idCoordinador = :idCoordinador")})
+    @NamedQuery(name = "CuartaOportunidad.findAll", query = "SELECT c FROM CuartaOportunidad c")})
 public class CuartaOportunidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,16 +38,16 @@ public class CuartaOportunidad implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "id_estudiante")
-    private String idEstudiante;
-    @Column(name = "id_curso")
-    private String idCurso;
+    @Column(name = "estudiante_id")
+    private String estudianteId;
+    @Column(name = "curso_id")
+    private String cursoId;
     @Basic(optional = false)
-    @Column(name = "id_secretaria")
-    private String idSecretaria;
+    @Column(name = "secretaria_id")
+    private String secretariaId;
     @Basic(optional = false)
-    @Column(name = "id_coordinador")
-    private String idCoordinador;
+    @Column(name = "coordinador_id")
+    private String coordinadorId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuartaOportunidadFk")
     private Collection<DocumentoCuartaOportunidad> documentoCuartaOportunidadCollection;
     @JoinColumn(name = "etapa_solicitud_fk", referencedColumnName = "id")
@@ -66,11 +61,11 @@ public class CuartaOportunidad implements Serializable {
         this.id = id;
     }
 
-    public CuartaOportunidad(Integer id, String idEstudiante, String idSecretaria, String idCoordinador) {
+    public CuartaOportunidad(Integer id, String estudianteId, String secretariaId, String coordinadorId) {
         this.id = id;
-        this.idEstudiante = idEstudiante;
-        this.idSecretaria = idSecretaria;
-        this.idCoordinador = idCoordinador;
+        this.estudianteId = estudianteId;
+        this.secretariaId = secretariaId;
+        this.coordinadorId = coordinadorId;
     }
 
     public Integer getId() {
@@ -81,36 +76,36 @@ public class CuartaOportunidad implements Serializable {
         this.id = id;
     }
 
-    public String getIdEstudiante() {
-        return idEstudiante;
+    public String getEstudianteId() {
+        return estudianteId;
     }
 
-    public void setIdEstudiante(String idEstudiante) {
-        this.idEstudiante = idEstudiante;
+    public void setEstudianteId(String estudianteId) {
+        this.estudianteId = estudianteId;
     }
 
-    public String getIdCurso() {
-        return idCurso;
+    public String getCursoId() {
+        return cursoId;
     }
 
-    public void setIdCurso(String idCurso) {
-        this.idCurso = idCurso;
+    public void setCursoId(String cursoId) {
+        this.cursoId = cursoId;
     }
 
-    public String getIdSecretaria() {
-        return idSecretaria;
+    public String getSecretariaId() {
+        return secretariaId;
     }
 
-    public void setIdSecretaria(String idSecretaria) {
-        this.idSecretaria = idSecretaria;
+    public void setSecretariaId(String secretariaId) {
+        this.secretariaId = secretariaId;
     }
 
-    public String getIdCoordinador() {
-        return idCoordinador;
+    public String getCoordinadorId() {
+        return coordinadorId;
     }
 
-    public void setIdCoordinador(String idCoordinador) {
-        this.idCoordinador = idCoordinador;
+    public void setCoordinadorId(String coordinadorId) {
+        this.coordinadorId = coordinadorId;
     }
 
     public Collection<DocumentoCuartaOportunidad> getDocumentoCuartaOportunidadCollection() {
@@ -151,7 +146,7 @@ public class CuartaOportunidad implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.CuartaOportunidad[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.CuartaOportunidad[ id=" + id + " ]";
     }
     
 }

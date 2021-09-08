@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -23,13 +23,10 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "DOCUMENTO_CUARTA_OPORTUNIDAD")
+@Table(name = "documento_equivalencia")
 @NamedQueries({
-    @NamedQuery(name = "DocumentoCuartaOportunidad.findAll", query = "SELECT d FROM DocumentoCuartaOportunidad d"),
-    @NamedQuery(name = "DocumentoCuartaOportunidad.findById", query = "SELECT d FROM DocumentoCuartaOportunidad d WHERE d.id = :id"),
-    @NamedQuery(name = "DocumentoCuartaOportunidad.findByNombre", query = "SELECT d FROM DocumentoCuartaOportunidad d WHERE d.nombre = :nombre"),
-    @NamedQuery(name = "DocumentoCuartaOportunidad.findByLink", query = "SELECT d FROM DocumentoCuartaOportunidad d WHERE d.link = :link")})
-public class DocumentoCuartaOportunidad implements Serializable {
+    @NamedQuery(name = "DocumentoEquivalencia.findAll", query = "SELECT d FROM DocumentoEquivalencia d")})
+public class DocumentoEquivalencia implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,23 +38,23 @@ public class DocumentoCuartaOportunidad implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "link")
-    private String link;
-    @JoinColumn(name = "id_cuarta_oportunidad_fk", referencedColumnName = "id")
+    @Column(name = "link_documento")
+    private String linkDocumento;
+    @JoinColumn(name = "id_equivalencia_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private CuartaOportunidad idCuartaOportunidadFk;
+    private DictamenEquivalencia idEquivalenciaFk;
 
-    public DocumentoCuartaOportunidad() {
+    public DocumentoEquivalencia() {
     }
 
-    public DocumentoCuartaOportunidad(Integer id) {
+    public DocumentoEquivalencia(Integer id) {
         this.id = id;
     }
 
-    public DocumentoCuartaOportunidad(Integer id, String nombre, String link) {
+    public DocumentoEquivalencia(Integer id, String nombre, String linkDocumento) {
         this.id = id;
         this.nombre = nombre;
-        this.link = link;
+        this.linkDocumento = linkDocumento;
     }
 
     public Integer getId() {
@@ -76,20 +73,20 @@ public class DocumentoCuartaOportunidad implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getLink() {
-        return link;
+    public String getLinkDocumento() {
+        return linkDocumento;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setLinkDocumento(String linkDocumento) {
+        this.linkDocumento = linkDocumento;
     }
 
-    public CuartaOportunidad getIdCuartaOportunidadFk() {
-        return idCuartaOportunidadFk;
+    public DictamenEquivalencia getIdEquivalenciaFk() {
+        return idEquivalenciaFk;
     }
 
-    public void setIdCuartaOportunidadFk(CuartaOportunidad idCuartaOportunidadFk) {
-        this.idCuartaOportunidadFk = idCuartaOportunidadFk;
+    public void setIdEquivalenciaFk(DictamenEquivalencia idEquivalenciaFk) {
+        this.idEquivalenciaFk = idEquivalenciaFk;
     }
 
     @Override
@@ -102,10 +99,10 @@ public class DocumentoCuartaOportunidad implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DocumentoCuartaOportunidad)) {
+        if (!(object instanceof DocumentoEquivalencia)) {
             return false;
         }
-        DocumentoCuartaOportunidad other = (DocumentoCuartaOportunidad) object;
+        DocumentoEquivalencia other = (DocumentoEquivalencia) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +111,7 @@ public class DocumentoCuartaOportunidad implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.DocumentoCuartaOportunidad[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.DocumentoEquivalencia[ id=" + id + " ]";
     }
     
 }

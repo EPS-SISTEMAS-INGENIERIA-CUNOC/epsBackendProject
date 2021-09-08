@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -26,17 +26,9 @@ import javax.persistence.TemporalType;
  * @author teodoro
  */
 @Entity
-@Table(name = "EXTRAORDINARIO")
+@Table(name = "extraordinario")
 @NamedQueries({
-    @NamedQuery(name = "Extraordinario.findAll", query = "SELECT e FROM Extraordinario e"),
-    @NamedQuery(name = "Extraordinario.findById", query = "SELECT e FROM Extraordinario e WHERE e.id = :id"),
-    @NamedQuery(name = "Extraordinario.findByFechaInicio", query = "SELECT e FROM Extraordinario e WHERE e.fechaInicio = :fechaInicio"),
-    @NamedQuery(name = "Extraordinario.findByEstado", query = "SELECT e FROM Extraordinario e WHERE e.estado = :estado"),
-    @NamedQuery(name = "Extraordinario.findByIdEstudiante", query = "SELECT e FROM Extraordinario e WHERE e.idEstudiante = :idEstudiante"),
-    @NamedQuery(name = "Extraordinario.findByIdDocente", query = "SELECT e FROM Extraordinario e WHERE e.idDocente = :idDocente"),
-    @NamedQuery(name = "Extraordinario.findByIdSecretaria", query = "SELECT e FROM Extraordinario e WHERE e.idSecretaria = :idSecretaria"),
-    @NamedQuery(name = "Extraordinario.findByIdCoordinador", query = "SELECT e FROM Extraordinario e WHERE e.idCoordinador = :idCoordinador"),
-    @NamedQuery(name = "Extraordinario.findByIdCurso", query = "SELECT e FROM Extraordinario e WHERE e.idCurso = :idCurso")})
+    @NamedQuery(name = "Extraordinario.findAll", query = "SELECT e FROM Extraordinario e")})
 public class Extraordinario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,20 +45,20 @@ public class Extraordinario implements Serializable {
     @Column(name = "estado")
     private String estado;
     @Basic(optional = false)
-    @Column(name = "id_estudiante")
-    private String idEstudiante;
+    @Column(name = "estudiante_id")
+    private String estudianteId;
     @Basic(optional = false)
-    @Column(name = "id_docente")
-    private String idDocente;
+    @Column(name = "docente_id")
+    private String docenteId;
     @Basic(optional = false)
-    @Column(name = "id_secretaria")
-    private String idSecretaria;
+    @Column(name = "secretaria_id")
+    private String secretariaId;
     @Basic(optional = false)
-    @Column(name = "id_coordinador")
-    private String idCoordinador;
+    @Column(name = "coordinador_id")
+    private String coordinadorId;
     @Basic(optional = false)
-    @Column(name = "id_curso")
-    private String idCurso;
+    @Column(name = "curso_id")
+    private String cursoId;
     @JoinColumn(name = "etapa_solicitud_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private EtapaSolicitud etapaSolicitudFk;
@@ -78,15 +70,15 @@ public class Extraordinario implements Serializable {
         this.id = id;
     }
 
-    public Extraordinario(Integer id, Date fechaInicio, String estado, String idEstudiante, String idDocente, String idSecretaria, String idCoordinador, String idCurso) {
+    public Extraordinario(Integer id, Date fechaInicio, String estado, String estudianteId, String docenteId, String secretariaId, String coordinadorId, String cursoId) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.estado = estado;
-        this.idEstudiante = idEstudiante;
-        this.idDocente = idDocente;
-        this.idSecretaria = idSecretaria;
-        this.idCoordinador = idCoordinador;
-        this.idCurso = idCurso;
+        this.estudianteId = estudianteId;
+        this.docenteId = docenteId;
+        this.secretariaId = secretariaId;
+        this.coordinadorId = coordinadorId;
+        this.cursoId = cursoId;
     }
 
     public Integer getId() {
@@ -113,44 +105,44 @@ public class Extraordinario implements Serializable {
         this.estado = estado;
     }
 
-    public String getIdEstudiante() {
-        return idEstudiante;
+    public String getEstudianteId() {
+        return estudianteId;
     }
 
-    public void setIdEstudiante(String idEstudiante) {
-        this.idEstudiante = idEstudiante;
+    public void setEstudianteId(String estudianteId) {
+        this.estudianteId = estudianteId;
     }
 
-    public String getIdDocente() {
-        return idDocente;
+    public String getDocenteId() {
+        return docenteId;
     }
 
-    public void setIdDocente(String idDocente) {
-        this.idDocente = idDocente;
+    public void setDocenteId(String docenteId) {
+        this.docenteId = docenteId;
     }
 
-    public String getIdSecretaria() {
-        return idSecretaria;
+    public String getSecretariaId() {
+        return secretariaId;
     }
 
-    public void setIdSecretaria(String idSecretaria) {
-        this.idSecretaria = idSecretaria;
+    public void setSecretariaId(String secretariaId) {
+        this.secretariaId = secretariaId;
     }
 
-    public String getIdCoordinador() {
-        return idCoordinador;
+    public String getCoordinadorId() {
+        return coordinadorId;
     }
 
-    public void setIdCoordinador(String idCoordinador) {
-        this.idCoordinador = idCoordinador;
+    public void setCoordinadorId(String coordinadorId) {
+        this.coordinadorId = coordinadorId;
     }
 
-    public String getIdCurso() {
-        return idCurso;
+    public String getCursoId() {
+        return cursoId;
     }
 
-    public void setIdCurso(String idCurso) {
-        this.idCurso = idCurso;
+    public void setCursoId(String cursoId) {
+        this.cursoId = cursoId;
     }
 
     public EtapaSolicitud getEtapaSolicitudFk() {
@@ -183,7 +175,7 @@ public class Extraordinario implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.Extraordinario[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.Extraordinario[ id=" + id + " ]";
     }
     
 }

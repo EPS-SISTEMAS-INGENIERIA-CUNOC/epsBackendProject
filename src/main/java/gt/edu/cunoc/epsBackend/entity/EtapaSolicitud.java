@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -27,11 +27,9 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "ETAPA_SOLICITUD")
+@Table(name = "etapa_solicitud")
 @NamedQueries({
-    @NamedQuery(name = "EtapaSolicitud.findAll", query = "SELECT e FROM EtapaSolicitud e"),
-    @NamedQuery(name = "EtapaSolicitud.findById", query = "SELECT e FROM EtapaSolicitud e WHERE e.id = :id"),
-    @NamedQuery(name = "EtapaSolicitud.findByNombre", query = "SELECT e FROM EtapaSolicitud e WHERE e.nombre = :nombre")})
+    @NamedQuery(name = "EtapaSolicitud.findAll", query = "SELECT e FROM EtapaSolicitud e")})
 public class EtapaSolicitud implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,19 +41,19 @@ public class EtapaSolicitud implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "etapaSolicitudFk")
-    private Collection<DictamenCierre> dictamenCierreCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "etapaSolicitudFk")
-    private Collection<ActaComplemento> actaComplementoCollection;
     @JoinColumn(name = "tipo_solicitud_fk", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private TipoSolicitud tipoSolicitudFk;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "etapaSolicitudFk")
-    private Collection<Extraordinario> extraordinarioCollection;
+    private Collection<DictamenCierre> dictamenCierreCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "etapaSolicitudFk")
-    private Collection<DictamenEquivalencia> dictamenEquivalenciaCollection;
+    private Collection<Extraordinario> extraordinarioCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "etapaSolicitud")
     private Desasignacion desasignacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "etapaSolicitudFk")
+    private Collection<DictamenEquivalencia> dictamenEquivalenciaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "etapaSolicitudFk")
+    private Collection<ActaComplemento> actaComplementoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "etapaSolicitudFk")
     private Collection<CuartaOportunidad> cuartaOportunidadCollection;
 
@@ -87,28 +85,20 @@ public class EtapaSolicitud implements Serializable {
         this.nombre = nombre;
     }
 
-    public Collection<DictamenCierre> getDictamenCierreCollection() {
-        return dictamenCierreCollection;
-    }
-
-    public void setDictamenCierreCollection(Collection<DictamenCierre> dictamenCierreCollection) {
-        this.dictamenCierreCollection = dictamenCierreCollection;
-    }
-
-    public Collection<ActaComplemento> getActaComplementoCollection() {
-        return actaComplementoCollection;
-    }
-
-    public void setActaComplementoCollection(Collection<ActaComplemento> actaComplementoCollection) {
-        this.actaComplementoCollection = actaComplementoCollection;
-    }
-
     public TipoSolicitud getTipoSolicitudFk() {
         return tipoSolicitudFk;
     }
 
     public void setTipoSolicitudFk(TipoSolicitud tipoSolicitudFk) {
         this.tipoSolicitudFk = tipoSolicitudFk;
+    }
+
+    public Collection<DictamenCierre> getDictamenCierreCollection() {
+        return dictamenCierreCollection;
+    }
+
+    public void setDictamenCierreCollection(Collection<DictamenCierre> dictamenCierreCollection) {
+        this.dictamenCierreCollection = dictamenCierreCollection;
     }
 
     public Collection<Extraordinario> getExtraordinarioCollection() {
@@ -119,6 +109,14 @@ public class EtapaSolicitud implements Serializable {
         this.extraordinarioCollection = extraordinarioCollection;
     }
 
+    public Desasignacion getDesasignacion() {
+        return desasignacion;
+    }
+
+    public void setDesasignacion(Desasignacion desasignacion) {
+        this.desasignacion = desasignacion;
+    }
+
     public Collection<DictamenEquivalencia> getDictamenEquivalenciaCollection() {
         return dictamenEquivalenciaCollection;
     }
@@ -127,12 +125,12 @@ public class EtapaSolicitud implements Serializable {
         this.dictamenEquivalenciaCollection = dictamenEquivalenciaCollection;
     }
 
-    public Desasignacion getDesasignacion() {
-        return desasignacion;
+    public Collection<ActaComplemento> getActaComplementoCollection() {
+        return actaComplementoCollection;
     }
 
-    public void setDesasignacion(Desasignacion desasignacion) {
-        this.desasignacion = desasignacion;
+    public void setActaComplementoCollection(Collection<ActaComplemento> actaComplementoCollection) {
+        this.actaComplementoCollection = actaComplementoCollection;
     }
 
     public Collection<CuartaOportunidad> getCuartaOportunidadCollection() {
@@ -165,7 +163,7 @@ public class EtapaSolicitud implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.EtapaSolicitud[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.EtapaSolicitud[ id=" + id + " ]";
     }
     
 }

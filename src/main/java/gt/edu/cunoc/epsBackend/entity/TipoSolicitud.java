@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gt.edu.cunoc.epsBackend.persitence.entity;
+package gt.edu.cunoc.epsBackend.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,14 +24,10 @@ import javax.persistence.Table;
  * @author teodoro
  */
 @Entity
-@Table(name = "VARIABLES_GLOBALES")
+@Table(name = "tipo_solicitud")
 @NamedQueries({
-    @NamedQuery(name = "VariablesGlobales.findAll", query = "SELECT v FROM VariablesGlobales v"),
-    @NamedQuery(name = "VariablesGlobales.findById", query = "SELECT v FROM VariablesGlobales v WHERE v.id = :id"),
-    @NamedQuery(name = "VariablesGlobales.findByNombre", query = "SELECT v FROM VariablesGlobales v WHERE v.nombre = :nombre"),
-    @NamedQuery(name = "VariablesGlobales.findByValorNum", query = "SELECT v FROM VariablesGlobales v WHERE v.valorNum = :valorNum"),
-    @NamedQuery(name = "VariablesGlobales.findByValorTxt", query = "SELECT v FROM VariablesGlobales v WHERE v.valorTxt = :valorTxt")})
-public class VariablesGlobales implements Serializable {
+    @NamedQuery(name = "TipoSolicitud.findAll", query = "SELECT t FROM TipoSolicitud t")})
+public class TipoSolicitud implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,20 +38,17 @@ public class VariablesGlobales implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valor_num")
-    private Double valorNum;
-    @Column(name = "valor_txt")
-    private String valorTxt;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoSolicitudFk")
+    private Collection<EtapaSolicitud> etapaSolicitudCollection;
 
-    public VariablesGlobales() {
+    public TipoSolicitud() {
     }
 
-    public VariablesGlobales(Integer id) {
+    public TipoSolicitud(Integer id) {
         this.id = id;
     }
 
-    public VariablesGlobales(Integer id, String nombre) {
+    public TipoSolicitud(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
@@ -73,20 +69,12 @@ public class VariablesGlobales implements Serializable {
         this.nombre = nombre;
     }
 
-    public Double getValorNum() {
-        return valorNum;
+    public Collection<EtapaSolicitud> getEtapaSolicitudCollection() {
+        return etapaSolicitudCollection;
     }
 
-    public void setValorNum(Double valorNum) {
-        this.valorNum = valorNum;
-    }
-
-    public String getValorTxt() {
-        return valorTxt;
-    }
-
-    public void setValorTxt(String valorTxt) {
-        this.valorTxt = valorTxt;
+    public void setEtapaSolicitudCollection(Collection<EtapaSolicitud> etapaSolicitudCollection) {
+        this.etapaSolicitudCollection = etapaSolicitudCollection;
     }
 
     @Override
@@ -99,10 +87,10 @@ public class VariablesGlobales implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof VariablesGlobales)) {
+        if (!(object instanceof TipoSolicitud)) {
             return false;
         }
-        VariablesGlobales other = (VariablesGlobales) object;
+        TipoSolicitud other = (TipoSolicitud) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -111,7 +99,7 @@ public class VariablesGlobales implements Serializable {
 
     @Override
     public String toString() {
-        return "gt.edu.cunoc.epsBackend.persitence.entity.VariablesGlobales[ id=" + id + " ]";
+        return "gt.edu.cunoc.epsBackend.entity.TipoSolicitud[ id=" + id + " ]";
     }
     
 }
