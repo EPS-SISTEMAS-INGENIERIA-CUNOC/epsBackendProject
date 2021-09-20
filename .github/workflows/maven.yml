@@ -1,12 +1,7 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: Java CI with Maven
+name: Rama Master
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 jobs:
@@ -24,13 +19,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-      env:
-        USER_DB: ${{ secrets.USER_DB }}
-        PASS_DB: ${{ secrets.PASS_DB }}
     - name: Deploy in Tomcat
       run: mvn tomcat7:redeploy
       env:
         USER_NAME: ${{ secrets.USER_NAME }}
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        USER_DB: ${{ secrets.USER_DB }}
-        PASS_DB: ${{ secrets.PASS_DB }}
