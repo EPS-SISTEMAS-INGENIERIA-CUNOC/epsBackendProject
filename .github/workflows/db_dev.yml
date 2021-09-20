@@ -23,8 +23,7 @@ jobs:
         USER_DB: ${{ secrets.USER_DB }}
         PASS_DB: ${{ secrets.PASS_DB }}
     - name: Run Migration FlywayDB
-      run: mvn flyway:repair
-      run: mvn flyway:migrate
+      run: mvn flyway:repair flyway:migrate
       env:
         USER_DB: ${{ secrets.USER_DB }}
         PASS_DB: ${{ secrets.PASS_DB }}
