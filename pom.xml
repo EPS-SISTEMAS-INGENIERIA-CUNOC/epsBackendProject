@@ -78,7 +78,7 @@
 						<location>filesystem:src/main/resources/database</location>
 					</locations>
 				</configuration>
-				<executions>
+				<!-- <executions>
 					<execution>
 						<phase>generate-sources</phase>
 						<goals>
@@ -87,7 +87,7 @@
 							<goal>info</goal>
 						</goals>
 					</execution>
-				</executions>
+				</executions> -->
 			</plugin>
 		</plugins>
 	</build>
