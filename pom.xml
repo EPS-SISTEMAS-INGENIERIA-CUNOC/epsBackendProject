@@ -78,16 +78,6 @@
 						<location>filesystem:src/main/resources/database</location>
 					</locations>
 				</configuration>
-				<!-- <executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>repair</goal>
-							<goal>migrate</goal>
-							<goal>info</goal>
-						</goals>
-					</execution>
-				</executions> -->
 			</plugin>
 		</plugins>
 	</build>
