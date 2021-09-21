@@ -12,7 +12,7 @@
 	<artifactId>epsBackend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>epsBackend</name>
+	<name>${env.PROJECT_NAME}</name>
 	<description>eps project backend</description>
 	<properties>
 		<java.version>11</java.version>
@@ -60,7 +60,7 @@
 <!--                                Descomentar para pruebas en AWS-->
 					<username>${env.USER_NAME}</username>
 					<password>${env.ACCESS_TOKEN}</password>
-					<path>/epsBackend</path>
+					<path>/${env.PROJECT_NAME}</path>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -78,16 +78,6 @@
 						<location>filesystem:src/main/resources/database</location>
 					</locations>
 				</configuration>
-				<!-- <executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>repair</goal>
-							<goal>migrate</goal>
-							<goal>info</goal>
-						</goals>
-					</execution>
-				</executions> -->
 			</plugin>
 		</plugins>
 	</build>
