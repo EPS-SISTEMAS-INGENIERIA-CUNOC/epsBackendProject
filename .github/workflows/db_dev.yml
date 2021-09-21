@@ -20,10 +20,12 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       env:
+        PROJECT_NAME: epsBackendDB
         USER_DB: ${{ secrets.USER_DB }}
         PASS_DB: ${{ secrets.PASS_DB }}
     - name: Run Migration FlywayDB
       run: mvn flyway:repair flyway:migrate
       env:
+        PROJECT_NAME: epsBackendDB
         USER_DB: ${{ secrets.USER_DB }}
         PASS_DB: ${{ secrets.PASS_DB }}

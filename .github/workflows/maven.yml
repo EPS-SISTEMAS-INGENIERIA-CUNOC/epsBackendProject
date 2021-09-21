@@ -3,8 +3,6 @@ name: Rama Master
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -22,12 +20,10 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       env:
-        USER_DB: ${{ secrets.USER_DB }}
-        PASS_DB: ${{ secrets.PASS_DB }}
+        PROJECT_NAME: epsBackend
     - name: Deploy in Tomcat
       run: mvn tomcat7:redeploy
       env:
+        PROJECT_NAME: epsBackend
         USER_NAME: ${{ secrets.USER_NAME }}
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        USER_DB: ${{ secrets.USER_DB }}
-        PASS_DB: ${{ secrets.PASS_DB }}
